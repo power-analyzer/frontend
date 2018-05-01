@@ -21,7 +21,7 @@ class App extends Component {
             <Route path='/dashboard' component={DashboardRoute}/>
             <Route path='/data' component={DataRoute}/>
             <Route exact path='/' component={LoginRoute}/>
-            // ...
+            {{/*Add more here*/}}
           </Switch>
       </div>
     );
