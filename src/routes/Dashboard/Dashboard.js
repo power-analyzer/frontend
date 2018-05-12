@@ -4,13 +4,25 @@ import { StatCard } from './stat-card';
 
 export class DashboardRoute extends Component {
   render() {
-    var test_vars = Array.from(Array(5).keys());
+    var stats = [
+      {
+        "name": "Power Usage",
+        "percent": .77
+      },
+      {
+        "name": "Average Efficiency",
+        "percent": .23
+      },{
+        "name": "Annual Savings",
+        "percent": .33
+      }
+    ];
     return(
       <div>
         <h1>Dashboard</h1>
-        {test_vars.map((key, i) => {
+        {stats.map((stat, key) => {
           return (
-            <StatCard/>
+            <StatCard key={key} stat={stat}/>
           );
         })}
       </div>

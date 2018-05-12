@@ -1,32 +1,42 @@
 import React, { Component } from 'react';
 import { Doughnut } from 'react-chartjs-2';
 
-const data = {
-	labels: [
-		'Red',
-		'Green',
-		'Yellow'
-	],
-	datasets: [{
-		data: [300, 50, 100],
-		backgroundColor: [
-		'#FF6384',
-		'#36A2EB',
-		'#FFCE56'
-		]
-	}]
-};
-
 export class StatCard extends Component {
 
+	constructor(props) {
+		super(props);
+		let stat = props.stat;
+		this.state = {
+			data: {
+				labels: [
+					props.stat.name,
+					"default",
+				],
+				datasets: [{
+					data: [stat.percent, 1 - stat.percent],
+					backgroundColor: [
+					'#FFCE56',
+					'#FFFFFF',
+					]
+				}]
+			}
+		};
+	}
+
+
+
   render() {
+		//Don't like typing
+		let data = this.state.data;
+		let stat = this.props.stat;
     return(
       <div>
-      	<Doughnut data={data} options={{
-		    	rotation: 2 * Math.PI * .75,
-		      circumference: 2 * Math.PI * .75
-		    }}/>
-      	<h1></h1>
+      	<Doughnut data={ data } options={{
+						legend: {
+        			display: false
+    				}
+				}}/>
+				<h1>{stat.name}</h1>
 			</div>
     );
   }
