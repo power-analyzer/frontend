@@ -4,7 +4,6 @@ import {
   Navbar,
   Nav,
   NavItem,
-  NavbarBrand,
   NavbarToggler,
   Collapse,
 } from 'reactstrap';
@@ -27,7 +26,7 @@ export class MainNav extends Component {
   render() {
     return (
       <Navbar color="dark" dark expand="md">
-          <NavbarBrand><Link className="navbar-brand" to="dashboard">Power Analyzer</Link></NavbarBrand>
+          <Link className="navbar-brand" to="dashboard">Power Analyzer</Link>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="mr-auto" navbar>

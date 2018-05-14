@@ -3,7 +3,7 @@ import {
   Switch,
   Route
 } from 'react-router-dom';
-import { Grid } from 'react-bootstrap';
+import { Container } from 'reactstrap';
 
 import {
   LoginRoute,
@@ -17,14 +17,14 @@ class App extends Component {
     return (
       <div className="App">
         <MainNav/>
-          <Grid>
-            <Switch>
-              <Route path='/dashboard' component={DashboardRoute}/>
-              <Route path='/data' component={DataRoute}/>
-              <Route exact path='/' component={LoginRoute}/>
-              {/*Add more here*/}
-            </Switch>
-          </Grid>
+        <Container className="pt-3">
+          <Switch>
+            <Route path='/dashboard' component={DashboardRoute}/>
+            <Route path='/data' component={DataRoute}/>
+            <Route exact path='/' component={LoginRoute}/>
+            {/*Add more here*/}
+          </Switch>
+        </Container>
       </div>
     );
   }

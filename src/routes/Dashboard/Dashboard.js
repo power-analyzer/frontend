@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Row } from 'reactstrap';
 
 import { StatCard } from './stat-card';
 
@@ -18,13 +19,15 @@ export class DashboardRoute extends Component {
       }
     ];
     return(
-      <div>
+      <div className="text-center">
         <h1>Dashboard</h1>
-        {stats.map((stat, key) => {
-          return (
-            <StatCard key={key} stat={stat}/>
-          );
-        })}
+        <Row>
+          {
+            stats.map((stat, key) => {
+              return (<StatCard key={key} stat={stat}/>);
+            })
+          }
+        </Row>
       </div>
     );
   }
