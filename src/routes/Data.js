@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Line } from 'react-chartjs-2';
+import axios from 'axios';
 
-const data = {
+var data = {
   labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
   datasets: [
     {
@@ -29,6 +30,23 @@ const data = {
 };
 
 export class DataRoute extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      chart: data
+    };
+    var now = new Date();
+    now.setDate(now.getDate() - 365);
+
+    axios.get("http://localhost:8000/datapoints/circuits/1/" + now.toISOString())
+      .then((res) => {
+        console.log(res);
+        let state = this.state;
+        state.chart.datasets[0].data = res.data;
+        this.setState(state);
+        console.log(this.state);
+      });
+  }
 
   render() {
     return(
