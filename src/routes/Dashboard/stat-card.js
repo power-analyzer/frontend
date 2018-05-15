@@ -17,7 +17,7 @@ export class StatCard extends Component {
 					data: [stat.percent, 1 - stat.percent],
 					backgroundColor: [
 					'#FFCE56',
-					'#FFFFFF',
+					'#FAFAFA',
 					]
 				}]
 			}
