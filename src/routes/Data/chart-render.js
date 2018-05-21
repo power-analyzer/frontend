@@ -9,6 +9,7 @@ export default class ChartRender extends Component {
     //Mapping 'this' to the Component.
     this.add_dataset = this.add_dataset.bind(this);
     this.fetch_and_add = this.fetch_and_add.bind(this);
+    // this.componentDidUpdate = this.componentDidUpdate.bind(this);
 
     this.state = {
       "chart": {
@@ -22,9 +23,31 @@ export default class ChartRender extends Component {
     now.setDate(now.getDate() - 365);
     this.state.time = now;
 
+
+  }
+
+  componentDidMount() {
     this.props.charts.map((chart) => {
       this.fetch_and_add(chart.name, chart.model, chart.id);
     });
+  }
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    let nextState = prevState;
+    nextState.chart = {
+      "labels": [],
+      "datasets": []
+    };
+    return(nextState);
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    console.log('componentDidUpdate()', prevProps, prevState);
+    if(prevState.chart.labels && prevState.chart.labels.length === 0){
+      this.props.charts.map((chart) => {
+        this.fetch_and_add(chart.name, chart.model, chart.id);
+      });
+    }
   }
 
   fetch_and_add(name, model, id) {
