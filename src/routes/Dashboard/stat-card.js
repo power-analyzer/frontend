@@ -32,7 +32,7 @@ export class StatCard extends Component {
 		let stat = this.props.stat;
     return(
       <Col xs="12" md="6" lg="4">
-				<Card className="pt-3">
+				<Card className="pt-3 mt-3">
 					<Doughnut data={ data } options={{
 							legend: {
 	        			display: false
