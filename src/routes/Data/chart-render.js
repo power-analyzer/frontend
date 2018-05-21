@@ -3,6 +3,8 @@ import { Container } from 'reactstrap';
 import { Line } from 'react-chartjs-2';
 import axios from 'axios';
 
+import { DATA_API } from '../../config.js';
+
 export default class ChartRender extends Component {
   constructor(props) {
     super(props);
@@ -52,7 +54,7 @@ export default class ChartRender extends Component {
 
   fetch_and_add(name, model, id) {
     let time = this.state.time;
-    axios.get("http://localhost:8000/datapoints/"+ model + "/" + id + "/" + time.toISOString())
+    axios.get(DATA_API + "/"+ model + "/" + id + "/" + time.toISOString())
       .then((res) => {
 
         this.add_dataset(name, res.data.data, res.data.labels);
