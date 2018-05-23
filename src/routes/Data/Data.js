@@ -19,14 +19,16 @@ export class DataRoute extends Component {
   }
 
   updateCharts(charts) {
-
+    let state = this.state;
+    state.charts = charts;
+    this.setState(state);
   }
 
   render() {
     return(
       <Container fluid className="text-center">
         <h1> Data</h1>
-        <DataSelector update={this.update}/>
+        <DataSelector update={this.updateCharts} charts={this.state.charts}/>
         <ChartRender charts={this.state.charts}/>
       </Container>
 

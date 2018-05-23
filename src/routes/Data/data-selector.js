@@ -10,11 +10,12 @@ export default class DataSelector extends Component {
     this.handleSelectChange = this.handleSelectChange.bind(this);
     this.fetchDeviceCircuits = this.fetchDeviceCircuits.bind(this);
     this.addCircuit = this.addCircuit.bind(this);
+    this.removeCircuit = this.removeCircuit.bind(this)
 
     this.state = {
       "devices": [],
       "circuits": [],
-      "charts": [],
+      "charts": this.props.charts,
       "selectedCircuit": null,
       "selectedDevice": null,
     };
@@ -28,12 +29,7 @@ export default class DataSelector extends Component {
       })
   }
 
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    //TODO: Update charts[] on parent.
-  }
-
   handleSelectChange(event) {
-    console.log(event);
     let name = event.target.name;
     let value = event.target.value;
     let state = this.state;
@@ -57,7 +53,7 @@ export default class DataSelector extends Component {
   addCircuit() {
     // TODO: FIX THIS.
     let state = this.state;
-    let circuitID = this.selectedCircuit;
+    let circuitID = state.selectedCircuit;
     let circuit = state.circuits.filter((circuit) => {
       if(circuit.pk === Number(circuitID)){
         return true;
@@ -66,14 +62,23 @@ export default class DataSelector extends Component {
       }
     });
     circuit = circuit[0];
-    let circuitName = circuit.pk + circuit.fields.name;
+    let circuitName = circuit.pk + " " + circuit.fields.name;
     let model = circuit.model.split('.')[1]; // turn "datapoints.circuit" -> "circuit"
-    state.charts.append({
+    model += "s";
+    state.charts.push({
       "id": circuitID,
       "name": circuitName,
       "model": model,
     });
     this.setState(state);
+    this.props.update(this.state.charts);
+  }
+
+  removeCircuit(chartIndex) {
+    let state = this.state;
+    state.charts.splice(chartIndex, 1); //Removes 1 item at `chartIndex`
+    this.setState(state);
+    this.props.update(this.state.charts);
   }
 
   render() {
@@ -98,7 +103,7 @@ export default class DataSelector extends Component {
       );
     });
 
-    let extraOption = (this.selectedDevice) ? (
+    let extraOption = (state.selectedDevice) ? (
       <option default value="">Select a circuit...</option>
     ) : (
       <option default value="">Select a device above</option>
@@ -114,7 +119,7 @@ export default class DataSelector extends Component {
 
     let charts = state.charts.map((chart, key) => {
       return(
-        <li>{chart.model + " " + chart.id + " " + chart.name}</li>
+        <li key={key}>{chart.model + " " + chart.id + " " + chart.name}</li>
       )
     })
 

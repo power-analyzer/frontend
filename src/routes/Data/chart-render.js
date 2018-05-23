@@ -18,7 +18,8 @@ export default class ChartRender extends Component {
         "datasets": [],
         "labels": []
       },
-      "time": ""
+      "time": "",
+      "test": true
     };
 
     var now = new Date();
@@ -35,7 +36,7 @@ export default class ChartRender extends Component {
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
-    let nextState = prevState;
+    let nextState = Object.assign({}, prevState);
     nextState.chart = {
       "labels": [],
       "datasets": []
@@ -44,8 +45,10 @@ export default class ChartRender extends Component {
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    console.log('componentDidUpdate()', prevProps, prevState);
-    if(prevState.chart.labels && prevState.chart.labels.length === 0){
+    // TODO: Check the diffs of props.chart to see which specific channels need
+    // to be reloaded. Right now it fetches everything over again.
+    // if(this.state.chart.datasets.length != prevState.chart.datasets.length) {
+    if(this.state.chart.datasets.length === 0) {
       this.props.charts.map((chart) => {
         this.fetch_and_add(chart.name, chart.model, chart.id);
       });
@@ -56,18 +59,19 @@ export default class ChartRender extends Component {
     let time = this.state.time;
     axios.get(DATA_API + "/"+ model + "/" + id + "/" + time.toISOString())
       .then((res) => {
-
         this.add_dataset(name, res.data.data, res.data.labels);
       });
   }
 
   add_dataset(name, data, labels) {
     let state = this.state;
-    if(state.chart.labels.length === 0) {
-      state.chart.labels = labels;
-    }
-    state.chart.datasets.push(
-      {
+    this.setState((prevState, props) => {
+      let nextState = Object.assign({}, prevState);
+
+      if(!state.chart.labels || state.chart.labels.length === 0) {
+        nextState.chart.labels = labels;
+      }
+      nextState.chart.datasets.push({
         label: name,
         fill: false,
         lineTension: 0.1,
@@ -87,9 +91,9 @@ export default class ChartRender extends Component {
         pointRadius: 1,
         pointHitRadius: 10,
         data: data
-      }
-    );
-    this.setState(state);
+      });
+      return nextState;
+    });
   }
 
   render() {
