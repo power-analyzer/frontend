@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Container, Row } from 'reactstrap';
+import { Container, Row, Col } from 'reactstrap';
 
 import { StatCard } from './stat-card';
+import { SummaryGraph } from './summary_graph.js';
 
 export class DashboardRoute extends Component {
   render() {
@@ -22,6 +23,9 @@ export class DashboardRoute extends Component {
       <Container className="pt-3">
         <div className="text-center">
           <h1>Dashboard</h1>
+          <Row>
+            <SummaryGraph/>
+          </Row>
           <Row>
             {
               stats.map((stat, key) => {

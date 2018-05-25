@@ -27,7 +27,7 @@ export class DataRoute extends Component {
   render() {
     return(
       <Container fluid className="text-center">
-        <h1> Data</h1>
+        <h1>Power Consumption</h1>
         <DataSelector update={this.updateCharts} charts={this.state.charts}/>
         <ChartRender charts={this.state.charts}/>
       </Container>

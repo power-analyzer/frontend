@@ -34,7 +34,10 @@ export class MainNav extends Component {
                 <Link className="nav-link" to="dashboard">Dashboard</Link>
               </NavItem>
               <NavItem>
-                <Link className="nav-link" to="data">Data</Link>
+                <Link className="nav-link" to="data">Power Consumption</Link>
+              </NavItem>
+              <NavItem>
+                <Link className="nav-link" to="alerts">Alerts</Link>
               </NavItem>
             </Nav>
             <Nav navbar>

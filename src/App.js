@@ -8,7 +8,8 @@ import { Container } from 'reactstrap';
 import {
   LoginRoute,
   DataRoute,
-  DashboardRoute
+  DashboardRoute,
+  AlertsRoute,
 } from './routes/index';
 import { MainNav } from './navbar';
 
@@ -20,6 +21,7 @@ class App extends Component {
           <Switch>
             <Route path='/dashboard' component={DashboardRoute}/>
             <Route path='/data' component={DataRoute}/>
+            <Route path='/alerts' component={AlertsRoute}/>
             <Route exact path='/' component={LoginRoute}/>
             {/*Add more here*/}
           </Switch>
