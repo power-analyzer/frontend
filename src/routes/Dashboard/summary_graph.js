@@ -1,20 +1,21 @@
 import React, { Component } from 'react';
+import { Col, Card, CardBody } from 'reactstrap';
 import { Line } from 'react-chartjs-2';
 
 const data = {
-  labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+  labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
   datasets: [
     {
-      label: 'My First dataset',
+      label: 'Total Power Consumption',
       fill: false,
       lineTension: 0.1,
-      backgroundColor: 'rgba(75,192,192,0.4)',
-      borderColor: 'rgba(75,192,192,1)',
+      backgroundColor: '#FFCE56',
+      borderColor: '#FFCE56',
       borderCapStyle: 'butt',
       borderDash: [],
       borderDashOffset: 0.0,
       borderJoinStyle: 'miter',
-      pointBorderColor: 'rgba(75,192,192,1)',
+      pointBorderColor: '#FFCE56',
       pointBackgroundColor: '#fff',
       pointBorderWidth: 1,
       pointHoverRadius: 5,
@@ -28,15 +29,17 @@ const data = {
   ]
 };
 
-export class DataRoute extends Component {
+export class SummaryGraph extends Component {
 
   render() {
     return(
-      <div>
-        <h1>Data</h1>
-        <Line data={data} />
-      </div>
-
+      <Col xs="12" >
+				<Card className="p-3 mt-3">
+          <Line data={data} />
+					<CardBody>
+					</CardBody>
+				</Card>
+			</Col>
     );
   }
 }

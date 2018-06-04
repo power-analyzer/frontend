@@ -3,12 +3,12 @@ import {
   Switch,
   Route
 } from 'react-router-dom';
-import { Container } from 'reactstrap';
 
 import {
   LoginRoute,
   DataRoute,
-  DashboardRoute
+  DashboardRoute,
+  AlertsRoute,
 } from './routes/index';
 import { MainNav } from './navbar';
 
@@ -17,14 +17,13 @@ class App extends Component {
     return (
       <div className="App">
         <MainNav/>
-        <Container className="pt-3">
           <Switch>
             <Route path='/dashboard' component={DashboardRoute}/>
             <Route path='/data' component={DataRoute}/>
+            <Route path='/alerts' component={AlertsRoute}/>
             <Route exact path='/' component={LoginRoute}/>
             {/*Add more here*/}
           </Switch>
-        </Container>
       </div>
     );
   }
