@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Row, Col } from 'reactstrap';
+import { Container, Row } from 'reactstrap';
 
 import { StatCard } from './stat-card';
 import { SummaryGraph } from './summary_graph.js';

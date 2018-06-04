@@ -3,7 +3,6 @@ import {
   Switch,
   Route
 } from 'react-router-dom';
-import { Container } from 'reactstrap';
 
 import {
   LoginRoute,

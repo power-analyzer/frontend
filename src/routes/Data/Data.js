@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { Container } from 'reactstrap';
-import { Line } from 'react-chartjs-2';
-import axios from 'axios';
 
 import ChartRender from './chart-render';
 import DataSelector from './data-selector';

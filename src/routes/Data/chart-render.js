@@ -30,9 +30,9 @@ export default class ChartRender extends Component {
   }
 
   componentDidMount() {
-    this.props.charts.map((chart) => {
+    for (let chart of this.props.charts) {
       this.fetch_and_add(chart.name, chart.model, chart.id);
-    });
+    }
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -49,9 +49,9 @@ export default class ChartRender extends Component {
     // to be reloaded. Right now it fetches everything over again.
     // if(this.state.chart.datasets.length != prevState.chart.datasets.length) {
     if(this.state.chart.datasets.length === 0) {
-      this.props.charts.map((chart) => {
+      for (let chart of this.props.charts) {
         this.fetch_and_add(chart.name, chart.model, chart.id);
-      });
+      }
     }
   }
 

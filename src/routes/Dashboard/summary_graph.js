@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Col, Card, CardTitle, CardBody } from 'reactstrap';
+import { Col, Card, CardBody } from 'reactstrap';
 import { Line } from 'react-chartjs-2';
 
 const data = {
