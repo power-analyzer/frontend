@@ -18,6 +18,8 @@ export class LoginRoute extends Component {
         <Row>
           <Col xs="12" md={{"size": 6, "offset": 3}} lg={{"size": 4, "offset": 4}} className="text-center mt-5">
             <img src={logo} alt="Power Analyzer Logo" className="img-fluid"/>
+            <h1>Power Analyzer</h1>
+            <p className="text-secondary">Intuitive data visualization and em-POWERing insights.</p>
             <Form className="mt-3">
               <FormGroup>
                 <Input type="text" name="username" id="username" placeholder="Username" />
