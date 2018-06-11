@@ -110,7 +110,7 @@ export default class DataSelector extends Component {
     );
 
     let circuitSelector = <div className="form-group">
-      <label for="circuit">Circuit</label>
+      <label htmlFor="circuit">Circuit</label>
       <select className="form-control" id="circuit" name="selectedCircuit" value={this.selectedCircuit} onChange={this.handleSelectChange}>
         {extraOption}
         {circuits}
@@ -128,7 +128,7 @@ export default class DataSelector extends Component {
         <Col xs="12" md="6" lg="3">
           {/*devices*/}
             <div className="form-group">
-              <label for="device">Device</label>
+              <label htmlFor="device">Device</label>
               <select className="form-control" id="device" name="selectedDevice" value={this.selectedDevice} onChange={this.handleSelectChange}>
                 <option default value="">Select a device...</option>
                 {devices}
