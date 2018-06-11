@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Col, Card, CardTitle, CardBody } from 'reactstrap';
 import { Doughnut } from 'react-chartjs-2';
 
 export class StatCard extends Component {
@@ -16,7 +17,7 @@ export class StatCard extends Component {
 					data: [stat.percent, 1 - stat.percent],
 					backgroundColor: [
 					'#FFCE56',
-					'#FFFFFF',
+					'#FAFAFA',
 					]
 				}]
 			}
@@ -30,14 +31,20 @@ export class StatCard extends Component {
 		let data = this.state.data;
 		let stat = this.props.stat;
     return(
-      <div>
-      	<Doughnut data={ data } options={{
-						legend: {
-        			display: false
-    				}
-				}}/>
-				<h1>{stat.name}</h1>
-			</div>
+      <Col xs="12" md="6" lg="4">
+				<Card className="pt-3 mt-3">
+					<Doughnut data={ data } options={{
+							legend: {
+	        			display: false
+	    				}
+					}}/>
+					<CardBody>
+						<CardTitle>
+							{stat.name}
+						</CardTitle>
+					</CardBody>
+				</Card>
+			</Col>
     );
   }
 }

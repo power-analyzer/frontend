@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { Container, Row } from 'reactstrap';
 
 import { StatCard } from './stat-card';
+import { SummaryGraph } from './summary_graph.js';
 
 export class DashboardRoute extends Component {
   render() {
@@ -18,14 +20,21 @@ export class DashboardRoute extends Component {
       }
     ];
     return(
-      <div>
-        <h1>Dashboard</h1>
-        {stats.map((stat, key) => {
-          return (
-            <StatCard key={key} stat={stat}/>
-          );
-        })}
-      </div>
+      <Container className="pt-3">
+        <div className="text-center">
+          <h1>Dashboard</h1>
+          <Row>
+            <SummaryGraph/>
+          </Row>
+          <Row>
+            {
+              stats.map((stat, key) => {
+                return (<StatCard key={key} stat={stat}/>);
+              })
+            }
+          </Row>
+        </div>
+      </Container>
     );
   }
 }
