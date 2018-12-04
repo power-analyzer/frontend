@@ -1,5 +1,5 @@
 # Power Analyzer Frontend
-This is the front-end portion of the power analyzer project. To learn more checkout the [project page](power-analyzer.github.io). 
+This is the front-end portion of the power analyzer project. To learn more checkout the [project page](https://power-analyzer.github.io). 
 
 ## Project Setup
 ### Prerequisites
